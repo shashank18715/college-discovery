@@ -77,29 +77,23 @@
 
 </div>
 <script>
-    window.addEventListener("pageshow", function () {
-        const menuToggle = document.getElementById("menu-toggle");
+document.addEventListener("DOMContentLoaded", function () {
+    const menuToggle = document.getElementById("menu-toggle");
 
-        if (menuToggle) {
+    if (menuToggle) {
+        // Close menu when clicking any menu link
+        document.querySelectorAll(".nav-links a").forEach(function (link) {
+            link.addEventListener("click", function () {
+                menuToggle.checked = false;
+            });
+        });
+
+        // Close menu automatically when scrolling
+        window.addEventListener("scroll", function () {
             menuToggle.checked = false;
-        }
-    });
-
-    window.addEventListener("scroll", function () {
-        const menuToggle = document.getElementById("menu-toggle");
-
-        if (menuToggle && menuToggle.checked) {
-            menuToggle.checked = false;
-        }
-    });
-
-    window.addEventListener("resize", function () {
-        const menuToggle = document.getElementById("menu-toggle");
-
-        if (menuToggle) {
-            menuToggle.checked = false;
-        }
-    });
+        });
+    }
+});
 </script>
 
 </body>
