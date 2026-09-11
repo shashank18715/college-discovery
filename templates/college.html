@@ -76,6 +76,31 @@
     </div>
 
 </div>
+<script>
+    window.addEventListener("pageshow", function () {
+        const menuToggle = document.getElementById("menu-toggle");
+
+        if (menuToggle) {
+            menuToggle.checked = false;
+        }
+    });
+
+    window.addEventListener("scroll", function () {
+        const menuToggle = document.getElementById("menu-toggle");
+
+        if (menuToggle && menuToggle.checked) {
+            menuToggle.checked = false;
+        }
+    });
+
+    window.addEventListener("resize", function () {
+        const menuToggle = document.getElementById("menu-toggle");
+
+        if (menuToggle) {
+            menuToggle.checked = false;
+        }
+    });
+</script>
 
 </body>
 </html>
