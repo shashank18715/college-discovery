@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang = "en">
+<head>
+    <title>Find Colleges</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<meta charset = "UTF-8">
+<body>
+
+<nav>
+    <div class="logo">CollegeFinder</div>
+
+    <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/colleges">Colleges</a>
+        <a href="/favorites">Favorites</a>
+
+        {% if session.get("user_id") %}
+            <a href="/logout">Logout</a>
+        {% else %}
+            <a href="/login">Login</a>
+        {% endif %}
+    </div>
+</nav>
+
+
+<div class="container">
+
+    <h1>Find Your College</h1>
+
+    <form class="search-box" method="GET">
+
+        <input
+            type="text"
+            name="search"
+            placeholder="Search college, city or state"
+            value="{{ search }}"
+        >
+
+        <label for="city">City</label>
+<select name="city" id="city">
+
+            <option value="">All Cities</option>
+            <option value="Patna" {% if city == "Patna" %}selected{% endif %}>
+                Patna
+            </option>
+
+            <option value="New Delhi" {% if city == "New Delhi" %}selected{% endif %}>
+                New Delhi
+            </option>
+
+            <option value="Bangalore" {% if city == "Bangalore" %}selected{% endif %}>
+                Bangalore
+            </option>
+
+            <option value="Noida" {% if city == "Noida" %}selected{% endif %}>
+                Noida
+            </option>
+
+            <option value="Vellore" {% if city == "Vellore" %}selected{% endif %}>
+                Vellore
+            </option>
+
+        </select>
+
+
+        <label for="course">Course</label>
+<select name="course" id="course">
+
+            <option value="">All Courses</option>
+
+            <option value="BCA" {% if course == "BCA" %}selected{% endif %}>
+                BCA
+            </option>
+
+            <option value="B.Tech" {% if course == "B.Tech" %}selected{% endif %}>
+                B.Tech
+            </option>
+
+        </select>
+
+        <button type="submit">Search</button>
+
+    </form>
+
+
+    <p class="result-count">
+        {{ colleges|length }} colleges found
+    </p>
+
+
+    <div class="college-grid">
+
+        {% for college in colleges %}
+
+        <div class="college-card">
+
+            <div class="college-image">
+                🏫
+            </div>
+
+            <h3>{{ college["name"] }}</h3>
+
+            <p>📍 {{ college["city"] }}, {{ college["state"] }}</p>
+
+            <p>🎓 {{ college["course"] }}</p>
+
+            <p>💰 {{ college["fees"] }}</p>
+
+            <p>⭐ {{ college["rating"] }}</p>
+
+            <div class="card-buttons">
+
+                <a
+                    href="/college/{{ college['id'] }}"
+                    class="view-button"
+                >
+                    Details
+                </a>
+
+                <a
+                    href="/favorite/{{ college['id'] }}"
+                    class="favorite-button"
+                >
+                    ❤️
+                </a>
+
+            </div>
+
+        </div>
+
+        {% else %}
+
+        <div class="no-result">
+            <h2>No college found</h2>
+            <p>Try another search.</p>
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+</body>
+</html>

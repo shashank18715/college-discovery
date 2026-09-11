@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Favorites</title>
+
+   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<nav>
+
+    <div class="logo">CollegeFinder</div>
+
+    <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/colleges">Colleges</a>
+        <a href="/favorites">Favorites</a>
+        <a href="/logout">Logout</a>
+    </div>
+
+</nav>
+
+
+<div class="container">
+
+    <h1>My Favorite Colleges</h1>
+
+    <div class="college-grid">
+
+        {% for college in colleges %}
+
+        <div class="college-card">
+
+            <div class="college-image">
+                🏫
+            </div>
+
+            <h3>{{ college["name"] }}</h3>
+
+            <p>
+                📍 {{ college["city"] }}, {{ college["state"] }}
+            </p>
+
+            <p>
+                🎓 {{ college["course"] }}
+            </p>
+
+            <p>
+                💰 {{ college["fees"] }}
+            </p>
+
+            <a
+                href="/college/{{ college['id'] }}"
+                class="view-button"
+            >
+                View Details
+            </a>
+
+            <a
+                href="/favorite/{{ college['id'] }}"
+                class="remove-button"
+            >
+                Remove
+            </a>
+
+        </div>
+
+        {% else %}
+
+        <div class="no-result">
+
+            <h2>No favorites yet</h2>
+
+            <p>
+                Search for colleges and save the ones you like.
+            </p>
+
+            <a href="/colleges" class="main-button">
+                Find Colleges
+            </a>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+</body>
+</html>

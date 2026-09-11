@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ college["name"] }}</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+
+</head>
+
+<body>
+
+<nav>
+
+    <div class="logo">CollegeFinder</div>
+
+    <div class="nav-links">
+
+        <a href="/">Home</a>
+        <a href="/colleges">Colleges</a>
+        <a href="/favorites">Favorites</a>
+
+    </div>
+
+</nav>
+
+
+<div class="details-container">
+
+    <div class="college-big-icon">
+        🏫
+    </div>
+
+    <h1>{{ college["name"] }}</h1>
+
+    <p class="location">
+        📍 {{ college["city"] }}, {{ college["state"] }}
+    </p>
+
+    <div class="details-grid">
+
+        <div>
+            <h3>Course</h3>
+            <p>{{ college["course"] }}</p>
+        </div>
+
+        <div>
+            <h3>Fees</h3>
+            <p>{{ college["fees"] }}</p>
+        </div>
+
+        <div>
+            <h3>Rating</h3>
+            <p>⭐ {{ college["rating"] }}/5</p>
+        </div>
+
+    </div>
+
+
+    <h2>About College</h2>
+
+    <p class="description">
+        {{ college["description"] }}
+    </p>
+
+
+    <div class="details-buttons">
+
+        <a
+            href="/favorite/{{ college['id'] }}"
+            class="main-button"
+        >
+            ❤️ Save College
+        </a>
+
+        <a
+            href="{{ college['website'] }}"
+            target="_blank"
+            class="secondary-button"
+        >
+            Visit Website
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

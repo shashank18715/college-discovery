@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compare Colleges</title>
+
+   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<nav>
+
+    <div class="logo">CollegeFinder</div>
+
+    <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/colleges">Colleges</a>
+    </div>
+
+</nav>
+
+
+<div class="container">
+
+    <h1>Compare Colleges</h1>
+
+    {% if colleges %}
+
+    <div class="compare-table">
+
+        <table>
+
+            <tr>
+                <th>College</th>
+
+                {% for college in colleges %}
+                <td>{{ college["name"] }}</td>
+                {% endfor %}
+
+            </tr>
+
+            <tr>
+                <th>Location</th>
+
+                {% for college in colleges %}
+                <td>
+                    {{ college["city"] }},
+                    {{ college["state"] }}
+                </td>
+                {% endfor %}
+
+            </tr>
+
+            <tr>
+                <th>Course</th>
+
+                {% for college in colleges %}
+                <td>{{ college["course"] }}</td>
+                {% endfor %}
+
+            </tr>
+
+            <tr>
+                <th>Fees</th>
+
+                {% for college in colleges %}
+                <td>{{ college["fees"] }}</td>
+                {% endfor %}
+
+            </tr>
+
+            <tr>
+                <th>Rating</th>
+
+                {% for college in colleges %}
+                <td>⭐ {{ college["rating"] }}</td>
+                {% endfor %}
+
+            </tr>
+
+        </table>
+
+    </div>
+
+    {% else %}
+
+    <div class="no-result">
+
+        <h2>No colleges selected</h2>
+
+        <p>
+            Add college IDs to the URL to compare colleges.
+        </p>
+
+        <a href="/colleges" class="main-button">
+            Browse Colleges
+        </a>
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+</body>
+</html>
