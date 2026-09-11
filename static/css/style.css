@@ -1344,3 +1344,69 @@ user-select: none;
         transform: rotate(90deg);
     }
 }
+/* MOBILE HAMBURGER - TAP TO OPEN */
+
+#menu-toggle {
+    display: none;
+}
+
+.menu-button {
+    display: none;
+}
+
+@media (max-width: 700px) {
+
+    nav {
+        position: relative;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .menu-button {
+        display: flex;
+        width: 44px;
+        height: 44px;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        font-size: 25px;
+        background: #f1f5f9;
+        border-radius: 10px;
+        z-index: 10001;
+    }
+
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: calc(100% + 8px);
+        left: 5%;
+        width: 90%;
+
+        flex-direction: column;
+        align-items: stretch;
+
+        padding: 10px;
+        background: white;
+        border-radius: 14px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+
+        z-index: 10000;
+    }
+
+    /* TAP ☰ → OPEN */
+    #menu-toggle:checked ~ .nav-links {
+        display: flex;
+    }
+
+    /* OPEN → CHANGE BUTTON */
+    #menu-toggle:checked + .menu-button {
+        background: var(--primary);
+        color: white;
+    }
+
+    .nav-links a {
+        width: 100%;
+        padding: 13px 15px;
+    }
+}
