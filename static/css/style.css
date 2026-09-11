@@ -1192,16 +1192,13 @@ footer p {
 /* =========================================================
    RESPONSIVE - SMALL MOBILE
    ========================================================= */
-
 @media (max-width: 420px) {
 
     .nav-links {
-        display: grid;
-
-        grid-template-columns: repeat(2, 1fr);
-
         width: 100%;
     }
+
+    
 
     .nav-links a,
     .nav-links span {
