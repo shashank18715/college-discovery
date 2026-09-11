@@ -93,7 +93,7 @@ def college_details(college_id):
     if college is None:
         return "College not found"
 
-    return render_template("colleges.html", college=college)
+    return redirect(college["website"])
 
 
 @app.route("/register", methods=["GET", "POST"])
