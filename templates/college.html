@@ -78,21 +78,35 @@
 </div>
 <script>
 document.addEventListener("DOMContentLoaded", function () {
+
     const menuToggle = document.getElementById("menu-toggle");
 
-    if (menuToggle) {
-        // Close menu when clicking any menu link
-        document.querySelectorAll(".nav-links a").forEach(function (link) {
-            link.addEventListener("click", function () {
-                menuToggle.checked = false;
-            });
-        });
+    if (!menuToggle) {
+        return;
+    }
 
-        // Close menu automatically when scrolling
-        window.addEventListener("scroll", function () {
+    // Always start with the menu closed
+    menuToggle.checked = false;
+
+    // Close menu when clicking a navigation link
+    document.querySelectorAll(".nav-links a").forEach(function (link) {
+        link.addEventListener("click", function () {
             menuToggle.checked = false;
         });
-    }
+    });
+
+    // Close menu when scrolling
+    window.addEventListener("scroll", function () {
+        if (menuToggle.checked) {
+            menuToggle.checked = false;
+        }
+    });
+
+    // Close menu when browser/device goes back to this page
+    window.addEventListener("pageshow", function () {
+        menuToggle.checked = false;
+    });
+
 });
 </script>
 
